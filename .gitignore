@@ -1,0 +1,152 @@
+node_modules
+.env
+
+CREATE SCHEMA ZSCustoms;
+
+CREATE TABLE IF NOT EXISTS ZSCustoms.users (
+  userID INT NOT NULL AUTO_INCREMENT,
+  firstName VARCHAR(30) NOT NULL,
+  lastName VARCHAR(30) NOT NULL,
+  userAge INT NOT NULL,
+  Gender VARCHAR(7) NOT NULL,
+  userRole VARCHAR(6) NOT NULL DEFAULT 'user',
+  emailAdd VARCHAR(100) NOT NULL,
+  userPass VARCHAR(200) NOT NULL,
+  userProfile TEXT  NOT NULL,
+  PRIMARY KEY (userID)
+);
+
+CREATE TABLE ZSCustoms.products (
+  productID INT NOT NULL AUTO_INCREMENT,
+  prodName VARCHAR(40) NOT NULL,
+  quantity INT NOT NULL,
+  amount DECIMAL(18,2) NOT NULL,
+  Category VARCHAR(30) NOT NULL,
+  prodUrl TEXT NOT NULL,
+  PRIMARY KEY (productID)
+);
+
+CREATE TABLE Carts (
+    cartID INT AUTO_INCREMENT PRIMARY KEY,
+    userID INT,
+    prodID INT,
+    quantity INT NOT NULL,
+    addedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE,
+    FOREIGN KEY (prodID) REFERENCES Products(prodID) ON DELETE CASCADE,
+    UNIQUE(userID, prodID)
+);
+
+INSERT INTO ZSCustoms.users (
+  firstName,
+  lastName,
+  userAge,
+  Gender,
+  userRole,
+  emailAdd,
+  userPass,
+  userProfile
+) VALUES
+  (
+    'Dan',
+    'Don',
+    23,
+    'Male',
+    'admin',
+    'dan.don@gmail.com',
+    'dandon',  
+    'dandon'
+  ),
+  (
+    'Sarah',
+    'West',
+    25,
+    'Female',
+    'admin',
+    'sarah.west@gmail.com',
+    'sarahwest', 
+    'sarahwest'
+  ),
+  (
+    'zakariya',
+    'salie',
+    21,
+    'Male',
+    'admin',
+    'zakaria.salie@gamil.com',
+    'zaksalie', 
+    'zaksalie'
+  );
+  
+  INSERT INTO `ZSCustoms`.`products` (
+  `prodName`,
+  `quantity`,
+  `amount`,
+  `Category`,
+  `prodUrl`
+) VALUES
+  (
+    Custom Katana Gear Shifter',
+    1,
+    749.99,
+    'katana ',
+    'https://zakariyasalie.github.io/allimages/images/Katanashifter.jpg'
+  ),
+  (
+    'Blue Roses Shifter',
+    2,
+    599.99,
+    'Blue',
+    'https://zakariyasalie.github.io/allimages/images/bluerosesshifter.jpg'
+  ),
+  (
+    'Light Blue Roses Shifter',
+    3,
+    699.99,
+    'blue',
+    'https://zakariyasalie.github.io/allimages/images/lightblueshifter.jpg'
+  ),
+  (
+    'Peach Roses Shifter',
+    4,
+    159.99,
+    'peach',
+    'https://zakariyasalie.github.io/allimages/images/peachrosesshifter.jpg'
+  ),
+  (
+    'Pink Roses Shifter',
+    5,
+    199.99,
+    'pink',
+    'https://zakariyasalie.github.io/allimages/images/pinkrosesshifter.jpg'
+  ),
+  (
+    'Pink Glowing Roses Shifter',
+    6,
+    7599.99,
+    'pink',
+    'https://zakariyasalie.github.io/allimages/images/pinkglowroses.jpg'
+  ),
+  (
+    'Pink Tree Shifter',
+    7,
+    119.99,
+    'pink',
+    'https://zakariyasalie.github.io/allimages/images/pinktreeshifter.jpg'
+  ),
+  (
+    'Snake Head Shifter',
+    8,
+    819.99,
+    'snake',
+    'https://zakariyasalie.github.io/allimages/images/snakeshifter.jpg'
+  ),
+  (
+    'Titanium Shifter',
+    9,
+    899.99,
+    'titanium',
+    'https://zakariyasalie.github.io/allimages/images/titaniumcustomgearshifter.jpg'
+  );
+
+Collapse
