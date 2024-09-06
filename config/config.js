@@ -1,13 +1,15 @@
-// import {pool} from '../config/config.js'
-import {createPool} from 'mysql2/promise'
-import {config} from 'dotenv'
+import mysql from 'mysql2'
+import{config} from 'dotenv'
 config()
 
-const pool=createPool({
-host:process.env.HOST,
-user:process.env.USER,
-password:process.env.PASSWORD,
-database: process.env.DATABASE
+const pool=mysql.createPool({
+    host:process.env.MYSQL_ADDON_HOST,
+    user:process.env.MYSQL_ADDON_USER,
+    password:process.env.MYSQL_ADDON_PASSWORD,
+    database:process.env.MYSQL_ADDON_DB,
+    multipleStatements: false,
+    connectionLimit: 30
+}).promise()
 
-})
-export default pool;
+
+export {pool}
