@@ -1,6 +1,6 @@
 import express from 'express'
-import productsRoutes from './routes/productsRoutes.js'
-import usersRoutes from './routes/usersRoutes.js'
+import productsRoutes from './routes/products-routes.js'
+import usersRoutes from './routes/users-routes.js'
 // import cors from "cors";
 
 const app=express()
