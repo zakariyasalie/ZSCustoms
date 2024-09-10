@@ -13,7 +13,7 @@ export default {
         const user_Email = req.Email;
         res.send(await getUser(user_Email))
     },
-
+    
 
     getUserRole: async (req, res) => {
      
