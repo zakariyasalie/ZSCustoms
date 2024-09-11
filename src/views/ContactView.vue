@@ -2,7 +2,7 @@
   <section id="contact" class="about-me">
     <!-- Background Image Container -->
     <div class="background-container">
-      <img src="https://zakariyasalie.github.io/allimages/images/background1.png" alt="Background" loading="lazy" class="background-image">
+      <img src="https://zakariyasalie.github.io/allimages/images/blueJesko.jpg" alt="Background" loading="lazy" class="background-image">
     </div>
       <!-- Main Content -->
       <div class="row">

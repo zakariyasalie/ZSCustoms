@@ -133,7 +133,7 @@ nav {
 /* Hero Section */
 .hero {
   min-height: 100vh;
-  background: url('https://zakariyasalie.github.io/allimages/images/background1.png') no-repeat center center/cover;
+  background: url('https://zakariyasalie.github.io/allimages/images/greenGT3RS.jpg') no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: center;

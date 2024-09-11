@@ -2,7 +2,7 @@
 <template>
   <section id="about" class="about-me">
     <div class="background-container">
-      <img src="https://zakariyasalie.github.io/allimages/images/GreenLambo1.jpg" alt="Background" loading="lazy" class="background-image">
+      <img src="https://zakariyasalie.github.io/allimages/images/blueBMW.jpg" alt="Background" loading="lazy" class="background-image">
     </div>
     <div class="container">
       <div class="grid gap-3 row-gap-1">

@@ -2,7 +2,7 @@
   <section class="admin-section">
     <!-- Background Image Container -->
     <div class="background-container">
-      <img src="https://zakariyasalie.github.io/allimages/images/background1.png" alt="Background" loading="lazy" class="background-image">
+      <img src="https://zakariyasalie.github.io/allimages/images/greenZL1.jpg" alt="Background" loading="lazy" class="background-image">
     </div>
 
     <!-- Main Content Container -->
