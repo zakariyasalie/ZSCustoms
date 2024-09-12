@@ -36,16 +36,16 @@
           <CardComp>
             <template #cardHeader>
               <img 
-                :src="product.prodUrl" 
+                :src="product.prod_Url" 
                 loading="lazy" 
-                :alt="product.prodName"
+                :alt="product.prod_Name"
                 class="img-fluid"
               />
             </template>
             <template #cardBody>
-              <h5 class="card-title fw-bold">{{ product.prodName }}</h5>
+              <h5 class="card-title fw-bold">{{ product.prod_Name }}</h5>
               <p class="lead">
-                <span class="text-success fw-bold">Amount</span>: ${{ product.amount }}
+                <span class="text-success fw-bold">price</span>: ${{ product.price }}
               </p>
               <div class="button-wrapper d-flex justify-content-between mt-3">
                 <router-link :to="{ name: 'product', params: { id: product.productID } }">
@@ -105,7 +105,7 @@ export default {
     const filterProducts = () => {
       const query = searchQuery.value.toLowerCase();
       filteredProducts.value = products.value.filter(product =>
-        product.prodName.toLowerCase().includes(query)
+        product.prod_Name.toLowerCase().includes(query)
       );
     };
 
@@ -114,13 +114,13 @@ export default {
       if (filteredProducts.value.length === 0) return;
 
       if (sortOption.value === 'nameAsc') {
-        filteredProducts.value.sort((a, b) => a.prodName.localeCompare(b.prodName));
+        filteredProducts.value.sort((a, b) => a.prod_Name.localeCompare(b.prod_Name));
       } else if (sortOption.value === 'nameDesc') {
-        filteredProducts.value.sort((a, b) => b.prodName.localeCompare(a.prodName));
+        filteredProducts.value.sort((a, b) => b.prod_Name.localeCompare(a.prod_Name));
       } else if (sortOption.value === 'priceAsc') {
-        filteredProducts.value.sort((a, b) => a.amount - b.amount);
+        filteredProducts.value.sort((a, b) => a.price - b.price);
       } else if (sortOption.value === 'priceDesc') {
-        filteredProducts.value.sort((a, b) => b.amount - a.amount);
+        filteredProducts.value.sort((a, b) => b.price - a.price);
       }
     };
 
