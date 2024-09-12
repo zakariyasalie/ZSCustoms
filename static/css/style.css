@@ -1,0 +1,50 @@
+body {
+    background-color: #2C2F33; /* Dark gray background */
+    font-family: Arial, sans-serif;
+    color: #fff; /* White text color */
+  }
+  table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 40px auto;
+    background-color: #333; /* Dark gray table background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some depth with a shadow */
+  }
+  th, td {
+    border: 1px solid #444; /* Dark gray border */
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #444; /* Dark gray header background */
+    color: #fff; /* White header text color */
+  }
+  td {
+    background-color: #333; /* Dark gray row background */
+  }
+  td:hover {
+    background-color: #555; /* Dark gray hover background */
+  }
+  h2 {
+    color: #fff; /* White heading color */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
