@@ -20,7 +20,7 @@ productRouter.patch('/:id',  (req, res) => {
     products.updateProduct(req, res)
 })
 productRouter.delete('/:id',  (req, res) => {
-    products.deleteProduct(req, res)                                  // add verifyAToken
+    products.deleteProduct(req, res)                                  
 })
 export {
     productRouter, express
