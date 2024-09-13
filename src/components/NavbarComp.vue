@@ -10,10 +10,12 @@
      <router-link to="/" @click="closeNav">Home</router-link>
      <router-link to="/about" @click="closeNav">About</router-link>
      <router-link to="/contact" @click="closeNav">Contact</router-link>
+     <router-link to="/Register" @click="closeNav">Register</router-link>
+     <router-link to="/Login" @click="closeNav">Login</router-link>
      <router-link to="/products" @click="closeNav">Products</router-link>
-     <router-link to="/admin" @click="closeNav">Admin</router-link>
-     
      <router-link to="/checkout" @click="closeNav">Checkout</router-link>
+     <router-link to="/Profile" @click="closeNav">Profile</router-link>
+     <router-link to="/admin" @click="closeNav">Admin</router-link>
    </div>
  </nav>
  </template>

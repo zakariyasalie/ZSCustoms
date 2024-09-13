@@ -36,6 +36,21 @@
     name: 'Checkout',
     component: () => import('@/views/checkoutView.vue')
   },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('@/views/LoginView.vue')
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: () => import('@/views/ProfileView.vue')
+  },
+  {
+    path: '/Register',
+    name: 'Register',
+    component: () => import('@/views/RegisterView.vue')
+  },
  ]
  const router = createRouter({
    history: createWebHistory(process.env.BASE_URL),

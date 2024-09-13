@@ -1,4 +1,4 @@
-<template>
+<template id="Register">
     <!-- User Management -->
     <div class="user-management">
       <h2>User Management</h2>
@@ -41,7 +41,7 @@
     <script>
     import { ref, computed, onMounted } from 'vue';
     import { useStore } from 'vuex';
-    import sweet from 'sweetalert'
+    import sweet from 'sweetalert';
     export default {
       setup() {
         const store = useStore();

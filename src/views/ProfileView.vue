@@ -1,4 +1,4 @@
-<template>
+<template id="Profile">
     <div class="container">
       <div class="row">
         <h2 class="display-4">Logout</h2>
