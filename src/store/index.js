@@ -70,6 +70,25 @@ export default createStore({
     clearCart(state) {
       state.cart = [];
     },
+
+
+
+
+    setLogin(state,data){
+      state.login = data
+    },
+SET_USERS(state, users) {
+      state.users = users;
+    },
+    ADD_USER(state, user) {
+      state.users.push(user);
+    },
+
+
+
+
+
+
   },
   actions: {
     async getProducts({ commit }) {
@@ -144,6 +163,81 @@ export default createStore({
       } catch (error) {
         console.error("Error creating user:", error);
         toast.error("Failed to create user. Please try again later.");
+      }
+    },
+    
+
+
+
+
+
+
+
+    async addUser(context, payload) {
+      try {
+        const { msg, err, token } = await (await axios.post(`https://zscustoms-1.onrender.com/register`, payload)).data
+        if (token) {
+          context.dispatch('fetchUsers')
+          toast.success(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+          router.push({ name: 'login' })
+        } else {
+          toast.error(`${err}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async login(context, payload) {
+      try {
+        const { msg, result, token } = await (await axios.post(`${apiURL}user/login`, payload)).data
+        if (result) {
+          toast.success(`${msg}:sunglasses:`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+          context.commit('setUser', {
+            msg,
+            result
+          })
+          cookies.set('LegitUser', { token, result })
+          applyToken(token)
+          router.push({ name: 'products' })
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async logOut(context){
+      try {
+        cookies.remove('LegitUser')
+        toast.success(`Logged out successfully:sunglasses:`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+        location.reload()
+        router.push({name : 'home'})
+      } catch (error) {
+        toast.error(`Ooops something went wrong:sob:`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
       }
     },
   },
