@@ -24,7 +24,8 @@
    {
      path: '/product/:id',
      name: 'product',
-     component: () => import('@/views/ProductView.vue')
+     component: () => import('@/views/ProductView.vue'),
+     props: true
    },
    {
      path: '/contact',

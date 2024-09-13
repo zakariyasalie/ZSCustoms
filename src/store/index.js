@@ -12,6 +12,7 @@ export default createStore({
     product: null,
     user: null,
     cart: [],
+    product: null,
   },
   mutations: {
     setProducts(state, payload) {
@@ -70,7 +71,12 @@ export default createStore({
     clearCart(state) {
       state.cart = [];
     },
-
+    SET_PRODUCTS(state, products) {
+      state.products = products;
+    },
+    SET_PRODUCT(state, product) {
+      state.product = product;
+    },
 
 
 
@@ -165,6 +171,12 @@ SET_USERS(state, users) {
         toast.error("Failed to create user. Please try again later.");
       }
     },
+    async getProductById({ commit }, productId) {
+      // Fetch a single product by ID
+      const response = await fetch(`/api/products/${productId}`);
+      const data = await response.json();
+      commit('SET_PRODUCT', data);
+    },
     
 
 
@@ -175,7 +187,7 @@ SET_USERS(state, users) {
 
     async addUser(context, payload) {
       try {
-        const { msg, err, token } = await (await axios.post(`https://zscustoms-1.onrender.com/register`, payload)).data
+        const { msg, err, token } = await (await axios.post(`https://zscustoms-1.onrender.com/users/register`, payload)).data
         if (token) {
           context.dispatch('fetchUsers')
           toast.success(`${msg}`, {
@@ -240,5 +252,9 @@ SET_USERS(state, users) {
         })
       }
     },
+  },
+  getters: {
+    products: (state) => state.products,
+    product: (state) => state.product,
   },
 });
