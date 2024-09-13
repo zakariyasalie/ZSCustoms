@@ -18,8 +18,13 @@
           <div class="content-box">
             <h2 class="text-uppercase mb-4 about-me-title" id="about-me-heading" data-aos="fade-left">About me</h2>
             <p class="text-center about-me-description" id="text-about-me">
-              Welcome to EmpowerGear, your trusted source for high-quality self-defense products. At EmpowerGear, we are committed to empowering individuals with the tools they need to stay safe and protect themselves in any situation. From compact and discreet items like the Concealed Self-Defense Ring and Personal Alarm to powerful options like Stun Guns and Tactical Flashlights, our curated selection is designed to offer peace of mind and security. Whether you're looking for everyday carry items or advanced tactical gear, EmpowerGear is here to provide you with reliable products that you can depend on when it matters most.
-            </p>
+              At ZSCustoms, we are passionate about enhancing your driving experience with precision-crafted, custom gear shifters designed to meet the highest standards of performance and style. Our journey began with a simple mission: to offer drivers more than just a standard gear shifter, but a personalized accessory that reflects their individuality and elevates their connection to the road.
+
+              With years of experience in automotive customization, we take pride in producing gear shifters that not only look incredible but also provide superior handling and durability. Each piece is meticulously designed, using high-quality materials and state-of-the-art manufacturing techniques to ensure a perfect fit for your vehicle and driving preferences.
+
+              Whether you're a racing enthusiast looking for enhanced performance or someone who values unique craftsmanship, ZSCustoms has the perfect gear shifter for you. We offer a wide range of designs, from sleek modern finishes to retro-inspired classics, all fully customizable to suit your style and needs.
+
+              Our commitment to quality, innovation, and customer satisfaction drives everything we do. When you choose ZSCustoms, you're not just upgrading your vehicle—you’re investing in a truly bespoke driving experience.            </p>
           </div>
         </div>
       </div>
@@ -35,11 +40,11 @@
         </div>
         <div class="col-md-4 col-sm-6 mb-4">
           <div class="content-box">
-            <p class="about-me-content">EmpowerGear</p>
+            <p class="about-me-content">ZSCustoms</p>
             <p class="about-me-content">Landsdowne, Cape Town, 7764, Western Cape, South Africa</p>
-            <p class="about-me-content">2015-2024</p>
+            <p class="about-me-content">2008-2024</p>
             <p class="about-me-content">(021) 699 8000</p>
-            <p class="about-me-content">EmpowerGear.contact.us@gmail.com</p>
+            <p class="about-me-content">ZSCustoms.contact.us@gmail.com</p>
           </div>
         </div>
         <div class="col-md-4 col-sm-12 mb-4">
