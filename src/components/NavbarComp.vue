@@ -12,6 +12,8 @@
      <router-link to="/contact" @click="closeNav">Contact</router-link>
      <router-link to="/products" @click="closeNav">Products</router-link>
      <router-link to="/admin" @click="closeNav">Admin</router-link>
+     
+     <router-link to="/checkout" @click="closeNav">checkout</router-link>
    </div>
  </nav>
  </template>

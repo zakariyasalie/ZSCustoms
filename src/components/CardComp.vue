@@ -34,7 +34,7 @@ export default {
 }
 
 .card-header {
-  height: 250px; /* Adjusted height for image consistency */
+  height: 250px; /* Fixed height for image consistency */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,6 +45,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensures the image covers the header without stretching */
+  object-position: center; /* Centers the image within the card header */
 }
 
 .card-body {

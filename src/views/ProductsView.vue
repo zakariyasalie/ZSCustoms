@@ -1,26 +1,19 @@
 <template>
   <section class="products-section">
-    <!-- Background Image Container -->
     <div class="background-container">
       <img src="https://zakariyasalie.github.io/allimages/images/blueR8.jpg" alt="Background" loading="lazy" class="background-image">
     </div>
-    <!-- Main Content Container -->
     <div class="content-container mt-4">
       <h2 class="display-2 text-center mb-4">Products</h2>
 
-      <!-- Search and Sort Bar -->
       <div class="d-flex justify-content-between mb-4">
-        <!-- Search Bar -->
         <input 
           type="text" 
           v-model="searchQuery" 
           class="form-control w-50" 
           placeholder="Search for products..."
-          @input="filterProducts"
         />
-        
-        <!-- Sort By Dropdown -->
-        <select class="form-select w-25" v-model="sortOption" @change="sortProducts">
+        <select class="form-select w-25" v-model="sortOption">
           <option value="default">Sort By</option>
           <option value="nameAsc">Name: A to Z</option>
           <option value="nameDesc">Name: Z to A</option>
@@ -29,10 +22,8 @@
         </select>
       </div>
 
-      <!-- Product Grid -->
       <div class="row">
-        <!-- Use col-12 col-md-4 to create a 3-column layout on medium to larger screens -->
-        <div class="col-12 col-md-4 mb-4" v-for="product in filteredProducts" :key="product.productID">
+        <div class="col-12 col-md-4 mb-4" v-for="product in filteredProducts" :key="product.prod_ID">
           <CardComp>
             <template #cardHeader>
               <img 
@@ -48,7 +39,7 @@
                 <span class="text-success fw-bold">price</span>: ${{ product.price }}
               </p>
               <div class="button-wrapper d-flex justify-content-between mt-3">
-                <router-link :to="{ name: 'product', params: { id: product.productID } }">
+                <router-link :to="{ name: 'product', params: { id: product.prod_ID } }">
                   <button class="btn btn-success">View</button>
                 </router-link>
                 <button class="btn btn-dark" @click="addToCart(product)">Add to Cart</button>
@@ -57,8 +48,7 @@
           </CardComp>
         </div>
       </div>
-      <!-- Loading Spinner -->
-      <div v-if="filteredProducts.length === 0">
+      <div v-if="filteredProducts.length === 0 && searchQuery.length > 0">
         <SpinnerComp />
       </div>
     </div>
@@ -80,28 +70,23 @@ export default {
     const store = useStore();
     const searchQuery = ref('');
     const sortOption = ref('default');
-    const products = computed(() => store.state.products);
+    const products = computed(() => store.state.products || []);
     const filteredProducts = ref([]);
 
-    // Watch for changes in products, searchQuery, and sortOption to update filteredProducts
-    watch([products, searchQuery, sortOption], () => {
+    onMounted(async () => {
+      await store.dispatch('getProducts');
       filterProducts();
-      sortProducts();
-    }, { deep: true });
-
-    // Fetch products on mount
-    onMounted(() => {
-      store.dispatch('getProducts').then(() => {
-        filteredProducts.value = [...products.value];
-      });
     });
 
-    // Method to add products to the cart
+    watch([searchQuery, sortOption], () => {
+      filterProducts();
+      sortProducts();
+    });
+
     const addToCart = (product) => {
       store.dispatch('addToCart', product);
     };
 
-    // Method to filter products based on search query
     const filterProducts = () => {
       const query = searchQuery.value.toLowerCase();
       filteredProducts.value = products.value.filter(product =>
@@ -109,7 +94,6 @@ export default {
       );
     };
 
-    // Method to sort products based on selected option
     const sortProducts = () => {
       if (filteredProducts.value.length === 0) return;
 
@@ -129,8 +113,6 @@ export default {
       sortOption,
       filteredProducts,
       addToCart,
-      filterProducts,
-      sortProducts,
     };
   },
 };
