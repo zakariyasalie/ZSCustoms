@@ -1,52 +1,105 @@
 <template id="Register">
-    <!-- User Management -->
-    <div class="user-management">
-      <h2>User Management</h2>
-      <!-- Form to Add or Update a User -->
-      <div class="user-form">
-        <h3>{{ isEditingUser ? 'Edit User' : 'Add New User' }}</h3>
-        <form @submit.prevent="isEditingUser ? updateUser() : addUser()">
-          <div class="form-group">
-            <label for="user_Name">First Name</label>
-            <input type="text" v-model="userForm.user_Name" required />
-          </div>
-          <div class="form-group">
-            <label for="userAge">Age</label>
-            <input type="number" v-model="userForm.userAge" required />
-          </div>
-          <div class="form-group">
-            <label for="Gender">Gender</label>
-            <input type="text" v-model="userForm.Gender" required />
-          </div>
-          <div class="form-group">
-            <label for="user_Email">Email</label>
-            <input type="email" v-model="userForm.user_Email" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" v-model="userForm.user_Pass" required />
-          </div>
-          <div class="form-group">
-            <label for="userProfile">Profile</label>
-            <textarea v-model="userForm.userProfile"></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="submit">{{ isEditingUser ? 'Update User' : 'Add User' }}</button>
-            <button v-if="isEditingUser" type="button" @click="cancelEditUser">Cancel</button>
-          </div>
-        </form>
+    <section id="register" class="login-section">
+      <div class="background-container">
+        <img src="https://zakariyasalie.github.io/allimages/images/blueBMW.jpg" alt="Background" loading="lazy" class="background-image">
       </div>
-    </div>
-    </template>
-    <script>
-    import { ref, computed, onMounted } from 'vue';
-    import { useStore } from 'vuex';
-    import sweet from 'sweetalert';
-    export default {
-      setup() {
-        const store = useStore();
-        // User state and methods
-        const userForm = ref({
+      <div class="container login-container">
+        <div class="row justify-content-center">
+          <h2 class="text-uppercase mb-4 login-title" data-aos="fade-left">{{ isEditingUser ? 'Edit User' : 'Register' }}</h2>
+        </div>
+        <div class="row my-2 justify-content-center">
+          <form class="form login-form" @submit.prevent="isEditingUser ? updateUser() : addUser()">
+            <div class="content-box">
+              <div class="form-control-wrapper mb-3">
+                <label for="user_Name" class="form-label text-center">First Name</label>
+                <input type="text" id="user_Name" class="form-control" v-model="userForm.user_Name" placeholder="First Name" required />
+              </div>
+              <div class="form-control-wrapper mb-3">
+                <label for="userAge" class="form-label text-center">Age</label>
+                <input type="number" id="userAge" class="form-control" v-model="userForm.userAge" placeholder="Age" required />
+              </div>
+              <div class="form-control-wrapper mb-3">
+                <label for="Gender" class="form-label text-center">Gender</label>
+                <input type="text" id="Gender" class="form-control" v-model="userForm.Gender" placeholder="Gender" required />
+              </div>
+              <div class="form-control-wrapper mb-3">
+                <label for="user_Email" class="form-label text-center">Email</label>
+                <input type="email" id="user_Email" class="form-control" v-model="userForm.user_Email" placeholder="Email" required />
+              </div>
+              <div class="form-control-wrapper mb-3">
+                <label for="user_Pass" class="form-label text-center">Password</label>
+                <input type="password" id="user_Pass" class="form-control" v-model="userForm.user_Pass" placeholder="Password" required />
+              </div>
+              <div class="form-control-wrapper mb-3">
+                <label for="userProfile" class="form-label text-center">Profile</label>
+                <textarea id="userProfile" class="form-control" v-model="userForm.userProfile" placeholder="Profile"></textarea>
+              </div>
+              <div class="form-control-wrapper d-flex justify-content-between align-items-center">
+                <button type="submit" class="btn1">{{ isEditingUser ? 'Update User' : 'Register' }}</button>
+              </div>
+              <div class="form-control-wrapper mt-3 d-flex justify-content-between">
+                <router-link to="/login">
+                  <button class="btn1">Login</button>
+                </router-link>
+                <button v-if="isEditingUser" @click="cancelEditUser" class="btn1">Cancel</button>
+              </div>
+              <div class="text-center mt-3">
+                <router-link to="/login"><a class="btn-link">Already have an account?</a></router-link>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </template>
+  
+  <script>
+  import { ref, computed, onMounted } from 'vue';
+  import { useStore } from 'vuex';
+  import sweet from 'sweetalert';
+  export default {
+    setup() {
+      const store = useStore();
+      const userForm = ref({
+        user_Name: '',
+        lastName: '',
+        userAge: '',
+        Gender: '',
+        userRole: '',
+        user_Email: '',
+        user_Pass: '',
+        userProfile: ''
+      });
+      const isEditingUser = ref(false);
+      const editingUser_Id = ref(null);
+      onMounted(() => {
+        store.dispatch('fetchUsers');
+      });
+      const users = computed(() => store.getters.allUsers);
+      const addUser = async () => {
+        await store.dispatch('addUser', userForm.value);
+        resetUserForm();
+        sweet("User Added!", "The user has been successfully added.", "success");
+      };
+      const editUser = (user) => {
+        userForm.value = { ...user };
+        isEditingUser.value = true;
+        editingUser_Id.value = user.user_ID;
+      };
+      const updateUser = async () => {
+        await store.dispatch('updateUser', { ...userForm.value, user_ID: editingUser_Id.value });
+        resetUserForm();
+        sweet("User Updated!", "The user has been successfully updated.", "success");
+      };
+      const deleteUser = async (user_ID) => {
+        await store.dispatch('deleteUser', user_ID);
+        sweet("User Deleted!", "The user has been successfully deleted.", "success");
+      };
+      const cancelEditUser = () => {
+        resetUserForm();
+      };
+      const resetUserForm = () => {
+        userForm.value = {
           user_Name: '',
           lastName: '',
           userAge: '',
@@ -55,59 +108,159 @@
           user_Email: '',
           user_Pass: '',
           userProfile: ''
-        });
-        const isEditingUser = ref(false);
-        const editingUser_Id = ref(null);
-        onMounted(() => {
-          store.dispatch('fetchUsers');
-        });
-        const users = computed(() => store.getters.allUsers);
-        const addUser = async () => {
-          await store.dispatch('addUser', userForm.value);
-          resetUserForm();
-          sweet("User Added!", "The user has been successfully added.", "success");
         };
-        const editUser = (user) => {
-          userForm.value = { ...user };
-          isEditingUser.value = true;
-          editingUser_Id.value = user.user_ID;
-        };
-        const updateUser = async () => {
-          await store.dispatch('updateUser', { ...userForm.value, user_ID: editingUser_Id.value });
-          resetUserForm();
-          sweet("User Updated!", "The user has been successfully updated.", "success");
-        };
-        const deleteUser = async (user_ID) => {
-          await store.dispatch('deleteUser', user_ID);
-          sweet("User Deleted!", "The user has been successfully deleted.", "success");
-        };
-        const cancelEditUser = () => {
-          resetUserForm();
-        };
-        const resetUserForm = () => {
-          userForm.value = {
-            user_Name: '',
-            lastName: '',
-            userAge: '',
-            Gender: '',
-            userRole: '',
-            user_Email: '',
-            user_Pass: '',
-            userProfile: ''
-          };
-          isEditingUser.value = false;
-          editingUser_Id.value = null;
-        };
-        return {
-          userForm,
-          users,
-          isEditingUser,
-          addUser,
-          editUser,
-          updateUser,
-          deleteUser,
-          cancelEditUser
-        };
-      }
-    };
-    </script>
+        isEditingUser.value = false;
+        editingUser_Id.value = null;
+      };
+      return {
+        userForm,
+        users,
+        isEditingUser,
+        addUser,
+        editUser,
+        updateUser,
+        deleteUser,
+        cancelEditUser
+      };
+    }
+  };
+  </script>
+  
+  <style scoped>
+  /* Reuse LoginView styling */
+  .login-section {
+    position: relative;
+    text-align: center;
+    padding: 5rem;
+    color: white;
+    overflow: hidden;
+  }
+  
+  .background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .content-box {
+    border: 2px solid #1abc9c;
+    background-color: rgba(44, 62, 80, 0.9);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .content-box:hover {
+    transform: scale(1.05);
+    border-color: #1abc9c;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-title {
+    color: #ecf0f1;
+  }
+  
+  .form-control-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .form-label {
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .form-control-wrapper button {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    font-size: 16px;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+    width: 100%;
+  }
+  
+  .form-control-wrapper button:hover {
+    color: #1abc9c;
+    background-color: #2c3e50;
+    transform: scale(1.05);
+  }
+  
+  .text-center.mt-3 {
+    margin-top: 1.5rem;
+  }
+  
+  .btn1 {
+    display: inline-block;
+    padding: 0.75rem;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: color 0.3s, background-color 0.3s, transform 0.3s;
+  }
+  
+  .btn1:hover {
+    color: #1abc9c;
+    background-color: #2c3e50;
+    transform: scale(1.05);
+  }
+  
+  .btn-link {
+    color: #1abc9c;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .login-section {
+      padding: 2rem;
+    }
+  
+    .content-box {
+      padding: 0.5rem;
+    }
+  
+    .login-title {
+      font-size: 1.5rem;
+      padding: 0.5rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .content-box {
+      padding: 0.25rem;
+    }
+  
+    .login-title {
+      font-size: 1.25rem;
+      padding: 0.25rem;
+    }
+  }
+  </style>
+  
