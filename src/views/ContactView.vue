@@ -71,6 +71,7 @@ export default {
   text-align: center;
   padding: 5rem;
   color: #1abc9c; /* Text color */
+  margin-top: 50px;
 }
 
 .background-container {
