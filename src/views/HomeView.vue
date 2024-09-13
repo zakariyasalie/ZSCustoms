@@ -15,7 +15,7 @@
       <!-- Header Section -->
       <section class="header-section">
         <p class="location">MOST RECENT, TOP SELLERS</p>
-        <h2 class="title">Problems I can help with</h2>
+        <h2 class="title">Made In Germany</h2>
         <div class="divider"></div>
       </section>
 
@@ -23,19 +23,19 @@
       <section class="grid-section">
         <div class="grid-container">
           <div class="grid-item">
-            <img src="https://zakariyasalie.github.io/allimages/images/TacticalFlashlight.png" alt="Problem 1" loading="lazy">
-            <h3>Tactical Flashlight</h3>
-            <p>This device can be used to blind & shock any threats.</p>
+            <img src="https://zakariyasalie.github.io/allimages/images/pinktreeshifter.jpg" alt="Problem 1" loading="lazy">
+            <h3>Pink Glow Roses Resin Shifter</h3>
+            <p>Resin shifter with pink glow roses design.</p>
           </div>
           <div class="grid-item">
-            <img src="https://mquanaazi.github.io/huluImages/stungun.jpg" alt="Problem 2" loading="lazy">
-            <h3>StunGun</h3>
-            <p>This can be used to shock any threats leaving them useless for aproximately 15 minutes.</p>
+            <img src="https://zakariyasalie.github.io/allimages/images/bluerosesshifter.jpg" alt="Problem 2" loading="lazy">
+            <h3>Blue Roses Resin Shifter</h3>
+            <p>Short Shifter made of Resin with a blue rose design.</p>
           </div>
           <div class="grid-item">
-            <img src="https://mquanaazi.github.io/huluImages/bladeknife.jpg" alt="Problem 3" loading="lazy">
-            <h3>Blade Knife</h3>
-            <p>This can be used to stab any threats.</p>
+            <img src="https://zakariyasalie.github.io/allimages/images/Katanashifter.jpg" alt="Problem 3" loading="lazy">
+            <h3>Katana Shfiter</h3>
+            <p>Made of solid Titanium and crafted in Japan</p>
           </div>
         </div>
       </section>
@@ -190,7 +190,7 @@ nav {
 /* Grid Section */
 .grid-section {
   padding: 50px 20px;
-  background: url('https://zakariyasalie.github.io/allimages/images/background1.png') no-repeat center center/cover;
+  background: url('https://zakariyasalie.github.io/allimages/images/blueJesko.jpg') no-repeat center center/cover;
 }
 
 .grid-container {

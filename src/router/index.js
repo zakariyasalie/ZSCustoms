@@ -24,7 +24,7 @@
    {
      path: '/product/:id',
      name: 'product',
-     component: () => import('@/views/ProductsView.vue')
+     component: () => import('@/views/ProductView.vue')
    },
    {
      path: '/contact',
@@ -36,12 +36,6 @@
     name: 'Checkout',
     component: () => import('@/views/checkoutView.vue')
   },
-  {
-    path: '/product/:id',
-    name: 'product',
-    component: () => import('@/views/ProductView.vue'),
-    props: true
-  },  
  ]
  const router = createRouter({
    history: createWebHistory(process.env.BASE_URL),

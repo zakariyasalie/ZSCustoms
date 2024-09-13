@@ -8,7 +8,7 @@ const apiURL = "https://zscustoms-1.onrender.com/";
 export default createStore({
   state: {
     products: [],
-    users: null,
+    users: [],
     product: null,
     user: null,
     cart: [],
@@ -83,6 +83,15 @@ export default createStore({
       }
     }
     ,    
+    async getUsers({ commit }) {
+      try {
+        const response = await axios.get(`${apiURL}users`);
+        commit('setUsers', response.data.results);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        toast.error("Failed to fetch users. Please try again later.");
+      }
+    },    
     async createProduct({ commit }, newProduct) {
       try {
         const response = await axios.post(`${apiURL}products`, newProduct);
@@ -126,6 +135,16 @@ export default createStore({
     },
     clearCart({ commit }) {
       commit('clearCart');
-    }
+    },
+    async createUser({ commit }, newUser) {
+      try {
+        const response = await axios.post(`${apiURL}users`, newUser);
+        commit('createUser', response.data);
+        toast.success("User created successfully!");
+      } catch (error) {
+        console.error("Error creating user:", error);
+        toast.error("Failed to create user. Please try again later.");
+      }
+    },
   },
 });
